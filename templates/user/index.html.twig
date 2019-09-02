@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'header.user.my_infomration' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'header.user.my_infomration' | trans }}</h1>
+
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>{{ 'table.thead.id' | trans }}</th>
+                    <th>{{ 'table.thead.user.first_name' | trans }}</th>
+                    <th>{{ 'table.thead.user.email' | trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ app.user.id }}</td>
+                    <td>{{ app.user.firstName }}</td>
+                    <td>{{ app.user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

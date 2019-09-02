@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'header.tag.edit' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'header.tag.edit' | trans }}</h1>
+
+        {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <button type="submit" class="btn btn-primary">{{ 'link.edit' | trans }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,100 @@
+header.homepage: Strona główna
+header.user.list: Użytkownicy
+header.user.add: Dodawanie użytkownika
+header.user.edit: Edycja użytkownika
+header.user.delete: Usuwanie użytkownika
+header.user.change_password: Zmiana hasła użytkownika
+header.user.my_infomration: Moje dane
+header.tag.list: Lista tagów
+header.tag.add: Dodaj tag
+header.tag.edit: Edytuj tag
+header.tag.remove: Usuwanie tag
+
+table.thead.id: ID
+table.thead.name: Nazwa
+table.thead.created_at: Data utworzenia
+table.thead.updated_at: Data zmiany
+table.thead.actions: Dostępne akcje
+
+table.thead.tag.name: Nazwa tagu
+
+table.thead.user.email: Email
+table.thead.user.role: Rola
+table.thead.user.status: Status
+table.thead.user.first_name: Imię
+
+link.account_with_name: Konto - %username%
+link.preview: Podgląd
+link.see_details: Zobacz szczegóły
+link.add: Dodaj
+link.add_user: Dodaj użytkownika
+link.edit: Edytuj
+link.remove: Usuń
+link.remove_user: Usuń użytkownika
+link.save: Zapisz
+link.on: Włącz
+link.off: Wyłącz
+link.login: Zaloguj
+link.logout: Wyloguj
+link.register: Utwórz konto
+link.admin_panel: Admin Panel
+link.back_to_list: Powrót do listy
+link.user_list: Użytkownicy
+link.user_change_password: Zmiana hasła
+
+link.tag.list: Lista tagów
+link.tag.add: Dodaj tag
+link.tag.edit: Edytuj tag
+link.tag.remove: Usuń tag
+
+users.roles.ROLE_ADMIN: Administrator
+users.roles.ROLE_USER: Użytkownik
+users.roles.status.active.0: Nieaktywny
+users.roles.status.active.1: Aktywny
+
+form.register: Rejestracja
+form.create_account: Utwórz konto
+form.user.roles.ROLE_USER: Użytkownik
+form.user.roles.ROLE_ADMIN: Administrator
+form.user.first_name: Imię
+form.user.email: E-mail
+form.user.password: Hasło
+form.user.repeat_password: Powtórz Hasło
+form.user.roles: Uprawnienia
+form.user.first_password: Nowe hasło
+form.user.second_password: Powtórz nowe hasło
+form.invalid.password: Nie prawidołowe hasło
+form.invalid.passwords: Podane hasła są różne
+form.tag.name: Nazwa tagu
+
+footer.project.name: Links2019
+footer.project.author_with_name: Autor - %name%
+footer.project.author_name: Katarzyna Persona
+footer.project.studies: EPI 2019
+
+message.success.user.remove: Usunięcie użytkownika %email% przebiegło pomyślnie
+message.success.user.add: Dodanie użytkownika przebiegło pomyślnie
+message.success.user.edit: Edycja użytkownika przebiegła pomyślnie
+message.success.user.change_password: Zmiana hasła użytkownika przebiegła pomyślnie
+
+message.success.tag.add: Dodanie tagu przebiegło pomyślnie
+message.success.tag.edit: Edycja tagu przebiegła pomyślnie
+message.success.tag.remove: Usunięcie tagu "%name%" przebiegło pomyślnie
+
+message.not_found.user: Nie znaleziono użytkownika
+message.danger.user.incorrect_password: Podane hasło jest nie prawidłowe
+
+"Username could not be found.": Użytkownik nie został znaleziony.
+
+login.page: Strona logowania
+login.user: Użytkownik
+login.user.placeholder: Email
+login.password: Hasło
+login.remember.me: Zapamiętaj mnie
+
+register.name: Twoje imię
+register.email: Adres email
+register.password: Hasło
+
+confirm.remove.user_with_name: Usunąć użytkownika "%name%"?
+confirm.remove.tag_with_name: Usunąć tag "%name%"?

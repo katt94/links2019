@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'form.register' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'form.register' | trans }}</h1>
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstName,  { 'label': 'register.name' }) }}
+        {{ form_row(registrationForm.email, { 'label': 'register.email' }) }}
+        {{ form_row(registrationForm.password, { 'label': 'register.password' }) }}
+
+        <button class="btn btn-primary" type="submit">{{ 'form.create_account' | trans }}</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

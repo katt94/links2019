@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}{{ 'footer.project.name' | trans }}</title>
+        {% block stylesheets_vendors %}
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% endblock %}
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block main_nav %}
+            <nav class="navbar navbar-light navbar-expand-sm" style="background-color: #fac200;">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ path('app_homepage') }}">
+                        Links2019
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link {% if app.request.get('_route') starts with 'app_homepage' %}active{% endif %}" href="{{ path('app_homepage') }}">{{ 'header.homepage' | trans }}</a>
+
+                            {% if app.user %}
+                                {#  #}
+                            {% endif %}
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="nav-item dropdown {% if app.request.get( '_route' ) starts with 'admin' %}active{% endif %}">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ 'link.admin_panel' | trans }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ path('admin_user_list') }}">{{ 'link.user_list' | trans }}</a>
+                                        <a class="dropdown-item" href="{{ path('admin_tag_list') }}">{{ 'link.tag.list' | trans }}</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="navbar-nav mr-right">
+                            {% if app.user %}
+                                <div class="nav-item dropdown {% if app.request.get( '_route' ) starts with 'admin' %}active{% endif %}">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ 'link.account_with_name' | trans({ '%username%': app.user.firstName }) }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ path('user_change_password') }}">{{ 'link.user_change_password' | trans }}</a>
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'link.logout' | trans }}</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <a class="nav-item nav-link {% if app.request.get( '_route' ) == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">{{ 'link.register' | trans }}</a>
+                                <a class="nav-item nav-link" href="{{ path('app_login') }}">{{ 'link.login' | trans }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
+        {% block flashbags %}
+            {% for type, flashes in app.session.flashbag.all %}
+                <div class="container">
+                    {% for flash in flashes %}
+                        <div class="alert alert-{{ type }} fade show alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">x</span>
+                            </button>
+
+                            {{ flash }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <p>{{ 'footer.project.name' | trans }}</p>
+                    <p>{{ 'footer.project.author_with_name' | trans({ '%name%': 'footer.project.author_name' | trans }) }}</p>
+                    <p>{{ 'footer.project.studies' | trans }}</p>
+                </div>
+            </footer>
+        {% endblock %}
+        {% block vendors %}
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                    crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+
+</html>
