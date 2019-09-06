@@ -71,8 +71,12 @@ class AdminController extends AbstractController
      *
      * @Route("/admin/user/new", name="admin_user_new", methods={"GET", "POST"})
      */
-    public function newUser(Request $request, UserRepository $repository, UserPasswordEncoderInterface $userPasswordEncoder, TranslatorInterface $translator): Response
-    {
+    public function newUser(
+        Request $request,
+        UserRepository $repository,
+        UserPasswordEncoderInterface $userPasswordEncoder,
+        TranslatorInterface $translator
+    ): Response {
         /** @var User $user */
         $user = new User();
 
@@ -156,10 +160,19 @@ class AdminController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      *
-     * @Route("/admin/user/{id}/delete", name="admin_user_delete", methods={"GET", "DELETE"}, requirements={"id": "[1-9]\d*"})
+     * @Route(
+     *     "/admin/user/{id}/delete",
+     *     name="admin_user_delete",
+     *     methods={"GET", "DELETE"},
+     *     requirements={"id": "[1-9]\d*"}
+     *     )
      */
-    public function deleteUser(Request $request, User $user, UserRepository $repository, TranslatorInterface $translator): Response
-    {
+    public function deleteUser(
+        Request $request,
+        User $user,
+        UserRepository $repository,
+        TranslatorInterface $translator
+    ): Response {
         $form = $this->createForm(UserType::class, $user, ['method' => 'DELETE', 'disabled' => true]);
         $form->handleRequest($request);
 

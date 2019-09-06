@@ -9,6 +9,10 @@ header.tag.list: Lista tagów
 header.tag.add: Dodaj tag
 header.tag.edit: Edytuj tag
 header.tag.remove: Usuwanie tag
+header.link.list: Lista linków
+header.link.add: Dodaj link
+header.link.edit: Edytuj link
+header.link.remove: Usuwanie linku
 
 table.thead.id: ID
 table.thead.name: Nazwa
@@ -23,11 +27,17 @@ table.thead.user.role: Rola
 table.thead.user.status: Status
 table.thead.user.first_name: Imię
 
+table.thead.link.url: Adres oryginalny
+table.thead.link.hash: Adres po zakodowaniu
+table.thead.link.tag_list: Tagi
+table.thead.link.counter: Odwiedziny
+
 link.account_with_name: Konto - %username%
 link.preview: Podgląd
 link.see_details: Zobacz szczegóły
 link.add: Dodaj
 link.add_user: Dodaj użytkownika
+link.add_link: Dodaj link
 link.edit: Edytuj
 link.remove: Usuń
 link.remove_user: Usuń użytkownika
@@ -66,6 +76,7 @@ form.user.second_password: Powtórz nowe hasło
 form.invalid.password: Nie prawidołowe hasło
 form.invalid.passwords: Podane hasła są różne
 form.tag.name: Nazwa tagu
+form.tags.name: Tagi (oddzielone przecinkiem)
 
 footer.project.name: Links2019
 footer.project.author_with_name: Autor - %name%
@@ -80,6 +91,10 @@ message.success.user.change_password: Zmiana hasła użytkownika przebiegła pom
 message.success.tag.add: Dodanie tagu przebiegło pomyślnie
 message.success.tag.edit: Edycja tagu przebiegła pomyślnie
 message.success.tag.remove: Usunięcie tagu "%name%" przebiegło pomyślnie
+
+message.success.link.add: Dodanie linku przebiegło pomyślnie
+message.success.link.edit: Edycja linku przebiegła pomyślnie
+message.success.link.remove: Usunięcie linku "%name%" przebiegło pomyślnie
 
 message.not_found.user: Nie znaleziono użytkownika
 message.danger.user.incorrect_password: Podane hasło jest nie prawidłowe

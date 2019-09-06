@@ -24,7 +24,7 @@
                             <a class="nav-item nav-link {% if app.request.get('_route') starts with 'app_homepage' %}active{% endif %}" href="{{ path('app_homepage') }}">{{ 'header.homepage' | trans }}</a>
 
                             {% if app.user %}
-                                {#  #}
+                                <a class="nav-item nav-link {% if app.request.get('_route') starts with 'link' %}active{% endif %}" href="{{ path('link_list') }}">{{ 'header.link.list' | trans }}</a>
                             {% endif %}
 
                             {% if is_granted('ROLE_ADMIN') %}

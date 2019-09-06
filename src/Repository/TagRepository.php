@@ -6,6 +6,7 @@ use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use ReflectionClass;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -26,6 +27,34 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
+    protected function removeDuplicates($insertions)
+    {
+        foreach ($insertions as $key => $insertion) {
+            try {
+                $shortClassName = (new \ReflectionClass($insertion))->getShortName();
+            } catch (\ReflectionException $e) {
+            }
+            // TODO: The search can be heavily optimized
+            foreach ($insertions as $possibleOtherKey => $possibleOtherInsertion) {
+                try {
+                    $shortOtherClassName = (new \ReflectionClass($insertion))->getShortName();
+                } catch (\ReflectionException $e) {
+                }
+                // TODO: Treat case when unique is on a field not called 'id'
+                if ($shortClassName === $shortOtherClassName
+                    && $insertion->getId() === $possibleOtherInsertion->getId()
+                    && $key !== $possibleOtherKey
+                ) {
+                    try {
+//                        $this->_em->persist($possibleOtherInsertion);
+                        $this->_em->remove($possibleOtherInsertion);
+                    } catch (ORMException $e) {
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Save record.
      *
@@ -37,6 +66,7 @@ class TagRepository extends ServiceEntityRepository
     public function save(Tag $tag): void
     {
         $this->_em->persist($tag);
+        $this->removeDuplicates($this->_em->getUnitOfWork()->getScheduledEntityInsertions());
         $this->_em->flush($tag);
     }
 

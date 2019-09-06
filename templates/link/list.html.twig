@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'header.user.my_infomration' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'header.user.my_infomration' | trans }} <a href="{{ path('link_add') }}" class="btn btn-sm btn-primary">{{ 'link.add_link' | trans }}</a></h1>
+
+        {% if links | length %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>{{ 'table.thead.id' | trans }}</th>
+                    <th>{{ 'table.thead.link.url' | trans }}</th>
+                    <th>{{ 'table.thead.link.hash' | trans }}</th>
+                    <th>{{ 'table.thead.link.tag_list' | trans }}</th>
+                    <th>{{ 'table.thead.link.counter' | trans }}</th>
+                    <th>{{ 'table.thead.actions' | trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for link in links %}
+                        <tr>
+                            <td>{{ link.id }}</td>
+                            <td>{{ link.url }}</td>
+                            <td>
+                                <a href="{{ url('link_redirect', { 'hash': link.hash }) }}" class="btn btn-link">{{ url('link_redirect', { 'hash': link.hash }) }}</a>
+                            </td>
+                            <td>
+                                {% for tag in link.tags %}
+                                    <span class="badge badge-secondary">{{ tag.name }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <span class="badge badge-primary">{{ link.counters | length }}</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a class="btn btn-outline-info btn-sm" href="{{ path('link_edit', { id: link.id }) }}">{{ 'link.edit' | trans }}</a>
+                                    <a class="btn btn-outline-danger btn-sm" href="{{ path('link_remove', { id: link.id }) }}">{{ 'link.remove' | trans }}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+
+            <div class="alert alert-primary">
+                Panuje wolność, nie ma tu nic <a href="{{ path('link_add') }}">{{ 'link.add_link' | trans | lower }}</a>
+            </div>
+
+        {% endif %}
+    </div>
+{% endblock %}

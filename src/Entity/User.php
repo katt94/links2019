@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Serializable;
@@ -131,6 +133,19 @@ class User implements UserInterface, Serializable, EquatableInterface
      * @Assert\DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="user")
+     */
+    private $links;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->links = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -282,12 +297,12 @@ class User implements UserInterface, Serializable, EquatableInterface
      * Returns the username used to authenticate the user.
      *
      * @return string
-     * @see UserInterface
      *
+     * @see UserInterface
      */
     public function getUsername(): string
     {
-        return (string)$this->email;
+        return (string) $this->email;
     }
 
     /**
@@ -297,8 +312,8 @@ class User implements UserInterface, Serializable, EquatableInterface
      * the plain-text password is stored on this object.
      *
      * @return User
-     * @see UserInterface
      *
+     * @see UserInterface
      */
     public function eraseCredentials()
     {
@@ -385,5 +400,36 @@ class User implements UserInterface, Serializable, EquatableInterface
     public function roleUser()
     {
         return self::ROLE_USER;
+    }
+
+    /**
+     * @return Collection|Link[]
+     */
+    public function getLinks(): Collection
+    {
+        return $this->links;
+    }
+
+    public function addLink(Link $link): self
+    {
+        if (!$this->links->contains($link)) {
+            $this->links[] = $link;
+            $link->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLink(Link $link): self
+    {
+        if ($this->links->contains($link)) {
+            $this->links->removeElement($link);
+            // set the owning side to null (unless already changed)
+            if ($link->getUserId() === $this) {
+                $link->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }

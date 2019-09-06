@@ -1,33 +1,23 @@
 <?php
 /**
- * Tag entity file.
+ * Counter entity file.
  */
 
 namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Tag.
+ * Class Counter.
  *
- * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
- * @ORM\Table(
- *     name="tag",
- *     uniqueConstraints={
- *          @ORM\UniqueConstraint(
- *              name="tag_name_idx",
- *              columns={"name"},
- *          )
- *     }
- * )
+ * @ORM\Entity(repositoryClass="App\Repository\CounterRepository")
+ * @ORM\Table(name="counter")
  */
-class Tag
+class Counter
 {
     /**
      * @ORM\Id()
@@ -63,19 +53,9 @@ class Tag
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Link", inversedBy="counters")
      */
-    private $name;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Link", mappedBy="tags")
-     */
-    private $links;
-
-    public function __construct()
-    {
-        $this->links = new ArrayCollection();
-    }
+    private $link;
 
     /**
      * @return int|null
@@ -83,25 +63,6 @@ class Tag
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return Tag
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -115,7 +76,7 @@ class Tag
     /**
      * @param DateTimeInterface $createdAt
      *
-     * @return Tag
+     * @return Counter
      */
     public function setCreatedAt(DateTimeInterface $createdAt): self
     {
@@ -135,7 +96,7 @@ class Tag
     /**
      * @param DateTimeInterface $updatedAt
      *
-     * @return Tag
+     * @return Counter
      */
     public function setUpdatedAt(DateTimeInterface $updatedAt): self
     {
@@ -145,37 +106,20 @@ class Tag
     }
 
     /**
-     * @return Collection|Link[]
+     * @return Link|null
      */
-    public function getLinks(): Collection
+    public function getLink(): ?Link
     {
-        return $this->links;
+        return $this->link;
     }
 
     /**
-     * @param Link $link
-     * @return Tag
+     * @param Link|null $link
+     * @return Counter
      */
-    public function addLink(Link $link): self
+    public function setLink(?Link $link): self
     {
-        if (!$this->links->contains($link)) {
-            $this->links[] = $link;
-            $link->addTag($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Link $link
-     * @return Tag
-     */
-    public function removeLink(Link $link): self
-    {
-        if ($this->links->contains($link)) {
-            $this->links->removeElement($link);
-            $link->removeTag($this);
-        }
+        $this->link = $link;
 
         return $this;
     }

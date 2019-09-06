@@ -117,7 +117,6 @@ class TagController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route(
      *     "/admin/tag/{id}/remove",
@@ -163,7 +162,7 @@ class TagController extends AbstractController
 
         return $this->render('tag/remove.html.twig', [
             'form' => $form->createView(),
-            'tag' => $tag
+            'tag' => $tag,
         ]);
     }
 }
