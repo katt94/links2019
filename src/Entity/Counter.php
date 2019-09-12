@@ -33,7 +33,7 @@ class Counter
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      *
      * @Assert\DateTime
      */
@@ -46,7 +46,7 @@ class Counter
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      *
      * @Assert\DateTime
      */
@@ -115,6 +115,7 @@ class Counter
 
     /**
      * @param Link|null $link
+     *
      * @return Counter
      */
     public function setLink(?Link $link): self

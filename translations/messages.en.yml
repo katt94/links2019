@@ -1,100 +1,139 @@
-header.homepage: Strona główna
-header.user.list: Użytkownicy
-header.user.add: Dodawanie użytkownika
-header.user.edit: Edycja użytkownika
-header.user.delete: Usuwanie użytkownika
-header.user.change_password: Zmiana hasła użytkownika
-header.user.my_infomration: Moje dane
-header.tag.list: Lista tagów
-header.tag.add: Dodaj tag
-header.tag.edit: Edytuj tag
-header.tag.remove: Usuwanie tag
+header.homepage: START
+header.homepage.welcome: Welcome to AxURL web app!
+header.user.list: Users
+header.user.add: Adding user
+header.user.edit: Editing user
+header.user.delete: Removing user
+header.user.change_password: Changing password
+header.user.my_infomration: Links
+header.tag.list: Tags list
+header.tag.add: Add tag
+header.tag.edit: Edit tag
+header.tag.remove: Remove tag
+header.link.list: Links list
+header.link.add: Add link
+header.link.edit: Edit link
+header.link.remove: Remove link
 
 table.thead.id: ID
-table.thead.name: Nazwa
-table.thead.created_at: Data utworzenia
-table.thead.updated_at: Data zmiany
-table.thead.actions: Dostępne akcje
+table.thead.name: Name
+table.thead.created_at: Creation date
+table.thead.updated_at: Modification date
+table.thead.actions: Actions
 
-table.thead.tag.name: Nazwa tagu
+table.thead.tag.name: Tag
 
 table.thead.user.email: Email
-table.thead.user.role: Rola
+table.thead.user.role: Role
 table.thead.user.status: Status
-table.thead.user.first_name: Imię
+table.thead.user.first_name: First name
 
-link.account_with_name: Konto - %username%
-link.preview: Podgląd
-link.see_details: Zobacz szczegóły
-link.add: Dodaj
-link.add_user: Dodaj użytkownika
-link.edit: Edytuj
-link.remove: Usuń
-link.remove_user: Usuń użytkownika
-link.save: Zapisz
-link.on: Włącz
-link.off: Wyłącz
-link.login: Zaloguj
-link.logout: Wyloguj
-link.register: Utwórz konto
-link.admin_panel: Admin Panel
-link.back_to_list: Powrót do listy
-link.user_list: Użytkownicy
-link.user_change_password: Zmiana hasła
+table.thead.link.url: Original link
+table.thead.link.hash: Shortened link
+table.thead.link.tag_list: Tags
+table.thead.link.counter: Visits
 
-link.tag.list: Lista tagów
-link.tag.add: Dodaj tag
-link.tag.edit: Edytuj tag
-link.tag.remove: Usuń tag
+link.account_with_name: '%username% user account'
+link.preview: Preview
+link.see_details: See details
+link.add: Add
+link.add_user: Add user
+link.add_link: Add link
+link.edit: Edit
+link.remove: Remove
+link.remove_user: Remove user
+link.save: Save
+link.on: Turn on
+link.off: Turn off
+link.login: Login
+link.logout: Logout
+link.register: Register
+link.admin_panel: SECTIONS
+link.back_to_list: Back to list
+link.user_list: Users
+link.user_change_password: Change password
 
-users.roles.ROLE_ADMIN: Administrator
-users.roles.ROLE_USER: Użytkownik
-users.roles.status.active.0: Nieaktywny
-users.roles.status.active.1: Aktywny
+link.tag.list: Tags list
+link.tag.add: Add tag
+link.tag.edit: Edit tag
+link.tag.remove: Remove tag
 
-form.register: Rejestracja
-form.create_account: Utwórz konto
-form.user.roles.ROLE_USER: Użytkownik
-form.user.roles.ROLE_ADMIN: Administrator
-form.user.first_name: Imię
+link.link.list: Links list
+link.link.add: Add link
+link.link.edit: Edit link
+link.link.remove: Remove link
+
+users.roles.ROLE_ADMIN: Admin
+users.roles.ROLE_LINK_EDITOR: Links editor
+users.roles.ROLE_USER: User
+users.roles.status.active.0: Inactive
+users.roles.status.active.1: Active
+
+form.register: Registration
+form.create_account: Create account
+form.user.select: -- Select user --
+form.user.roles.ROLE_USER: User
+form.user.roles.ROLE_LINK_EDITOR: User - link editor
+form.user.roles.ROLE_ADMIN: Admin
+form.user.first_name: First name
 form.user.email: E-mail
-form.user.password: Hasło
-form.user.repeat_password: Powtórz Hasło
-form.user.roles: Uprawnienia
-form.user.first_password: Nowe hasło
-form.user.second_password: Powtórz nowe hasło
-form.invalid.password: Nie prawidołowe hasło
-form.invalid.passwords: Podane hasła są różne
-form.tag.name: Nazwa tagu
+form.user.password: Current password
+form.user.repeat_password: Repeat passowrd
+form.user.roles: Permissions/Roles
+form.user.first_password: New password
+form.user.second_password: Repeat new password
+form.invalid.password: Incorrect password
+form.invalid.passwords: Different passowrds given
+form.tag.name: Tag
+form.tag.user: User
+form.tag.url: URL address
+form.tags.name: Tags (separated with comas)
 
-footer.project.name: Links2019
-footer.project.author_with_name: Autor - %name%
+footer.project.name: AxURL
+footer.project.author_with_name: Author - %name%
 footer.project.author_name: Katarzyna Persona
-footer.project.studies: EPI 2019
+footer.project.studies: EPI 2019 - Jagiellonian University of Cracow
 
-message.success.user.remove: Usunięcie użytkownika %email% przebiegło pomyślnie
-message.success.user.add: Dodanie użytkownika przebiegło pomyślnie
-message.success.user.edit: Edycja użytkownika przebiegła pomyślnie
-message.success.user.change_password: Zmiana hasła użytkownika przebiegła pomyślnie
+message.success.user.remove: Deleting %email% user successfull!
+message.success.user.add: Adding new user successfull!
+message.success.user.edit: Editing user successfull!
+message.success.user.change_password: Changing user's password successfull!
 
-message.success.tag.add: Dodanie tagu przebiegło pomyślnie
-message.success.tag.edit: Edycja tagu przebiegła pomyślnie
-message.success.tag.remove: Usunięcie tagu "%name%" przebiegło pomyślnie
+message.success.tag.add: Adding new tag successfull!
+message.success.tag.edit: Editing new tag successfull!
+message.success.tag.remove: Removing "%name%" tag successfull!
 
-message.not_found.user: Nie znaleziono użytkownika
-message.danger.user.incorrect_password: Podane hasło jest nie prawidłowe
+message.success.link.add: Adding new link successfull!
+message.success.link.edit: Editing link successfull!
+message.success.link.remove: Removing "%name%" link successfull!
 
-"Username could not be found.": Użytkownik nie został znaleziony.
+message.not_found.user: User not found :(
+message.danger.user.incorrect_password: Incorrect password :(
 
-login.page: Strona logowania
-login.user: Użytkownik
+"Username could not be found.": User not found :(
+
+login.page: Login Panel
+login.user: User
 login.user.placeholder: Email
-login.password: Hasło
-login.remember.me: Zapamiętaj mnie
+login.password: Password
+login.remember.me: Remember me
 
-register.name: Twoje imię
-register.email: Adres email
-register.password: Hasło
+register.name: Your name
+register.email: Email address
+register.password: Password
 
-confirm.remove.user_with_name: Usunąć użytkownika "%name%"?
-confirm.remove.tag_with_name: Usunąć tag "%name%"?
+confirm.remove.user_with_name: Remove "%name%" user?
+confirm.remove.tag_with_name: Remove "%name%" tag?
+
+homepage.text1: The application was made to allow the registered and logged in user to shorten any URL entered by him
+                (not longer than 255 characters), save it in the database (table on his account) and mark with appropriate tags.
+homepage.text2: There are 2 types of users in the application - an administrator and a regular user.
+                Each user during registration provides his name, email address (as his login) and password to access the account in the application.
+homepage.text3: Actions that the administrator can perform after logging in are adding new user, changing the user's name,
+                email and password as well as their own password, selecting the role and removing the user, adding,
+                editing and removing another user’s link selected from the list (beside other admins),
+                adding, editing, removing the tag and logging out.
+homepage.text4: Regular user can shorten, edit and delete their links, edit tags, change their password and log out.
+
+homepage.user.data: Login data for user -> user@user.pl / test123
+homepage.admin.data: Login data for admin -> admin@admin.pl / test123

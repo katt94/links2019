@@ -63,7 +63,7 @@ class Link
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      *
      * @Assert\DateTime
      */
@@ -76,7 +76,7 @@ class Link
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      *
      * @Assert\DateTime
      */

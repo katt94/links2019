@@ -35,6 +35,7 @@ class LinkRepository extends ServiceEntityRepository
      * Save record.
      *
      * @param Link $link
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -48,6 +49,7 @@ class LinkRepository extends ServiceEntityRepository
      * Delete record.
      *
      * @param Link $link
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */

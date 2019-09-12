@@ -1,4 +1,7 @@
 <?php
+/**
+ * Admin tag controller file.
+ */
 
 namespace App\Controller;
 
@@ -7,6 +10,7 @@ use App\Form\TagType;
 use App\Repository\TagRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,24 +18,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class TagController extends AbstractController
+/**
+ * Class AdminTagController.
+ */
+class AdminTagController extends AbstractController
 {
     /**
      * @Route("/admin/tag-list", name="admin_tag_list")
      *
      * @IsGranted("ROLE_ADMIN")
      *
-     * @param TagRepository $tagRepository
+     * @param Request            $request
+     * @param PaginatorInterface $paginator
+     * @param TagRepository      $tagRepository
      *
      * @return Response
      */
-    public function index(TagRepository $tagRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator, TagRepository $tagRepository): Response
     {
         /** @var Tag[] $tags */
         $tags = $tagRepository->findAll();
 
         return $this->render('tag/list.html.twig', [
-            'tags' => $tags,
+            'pagination' => $paginator->paginate($tags, $request->query->getInt('page', 1)),
         ]);
     }
 

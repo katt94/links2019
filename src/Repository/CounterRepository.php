@@ -35,6 +35,7 @@ class CounterRepository extends ServiceEntityRepository
      * Save record.
      *
      * @param Counter $counter
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -48,6 +49,7 @@ class CounterRepository extends ServiceEntityRepository
      * Delete record.
      *
      * @param Counter $counter
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      */

@@ -10,6 +10,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,19 +41,21 @@ class AdminController extends AbstractController
     /**
      * User list action.
      *
-     * @param UserRepository $userRepository
+     * @param Request            $request
+     * @param PaginatorInterface $paginator
+     * @param UserRepository     $userRepository
      *
      * @return Response
      *
      * @Route("/admin/users", name="admin_user_list")
      */
-    public function userList(UserRepository $userRepository): Response
+    public function userList(Request $request, PaginatorInterface $paginator, UserRepository $userRepository): Response
     {
         /** @var User[] $users */
         $users = $userRepository->findAll();
 
         return $this->render('admin/user_list.html.twig', [
-            'users' => $users,
+            'pagination' => $paginator->paginate($users, $request->query->getInt('page', 1)),
         ]);
     }
 
@@ -119,8 +122,13 @@ class AdminController extends AbstractController
      *
      * @Route("/admin/user/{id}/edit", name="admin_user_edit", methods={"GET", "PUT"}, requirements={"id": "[1-9]\d*"})
      */
-    public function editUser(Request $request, User $user, UserRepository $repository, UserPasswordEncoderInterface $userPasswordEncoder, TranslatorInterface $translator): Response
-    {
+    public function editUser(
+        Request $request,
+        User $user,
+        UserRepository $repository,
+        UserPasswordEncoderInterface $userPasswordEncoder,
+        TranslatorInterface $translator
+    ): Response {
         $form = $this->createForm(UserType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
 

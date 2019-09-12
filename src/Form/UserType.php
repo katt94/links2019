@@ -51,6 +51,7 @@ class UserType extends AbstractType
                 'required' => true,
                 'choices' => [
                     'form.user.roles.ROLE_USER' => User::ROLE_USER,
+                    'form.user.roles.ROLE_LINK_EDITOR' => User::ROLE_LINK_EDITOR,
                     'form.user.roles.ROLE_ADMIN' => User::ROLE_ADMIN,
                 ],
                 'expanded' => true,

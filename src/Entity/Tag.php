@@ -43,7 +43,7 @@ class Tag
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      *
      * @Assert\DateTime
      */
@@ -56,7 +56,7 @@ class Tag
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      *
      * @Assert\DateTime
      */
@@ -95,6 +95,7 @@ class Tag
 
     /**
      * @param string $name
+     *
      * @return Tag
      */
     public function setName(string $name): self
@@ -154,6 +155,7 @@ class Tag
 
     /**
      * @param Link $link
+     *
      * @return Tag
      */
     public function addLink(Link $link): self
@@ -168,6 +170,7 @@ class Tag
 
     /**
      * @param Link $link
+     *
      * @return Tag
      */
     public function removeLink(Link $link): self

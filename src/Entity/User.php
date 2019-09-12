@@ -42,6 +42,13 @@ class User implements UserInterface, Serializable, EquatableInterface
     const ROLE_USER = 'ROLE_USER';
 
     /**
+     * Role link editor.
+     *
+     * @constant string ROLE_LINK_EDITOR
+     */
+    const ROLE_LINK_EDITOR = 'ROLE_LINK_EDITOR';
+
+    /**
      * Role admin.
      *
      * @constant string ROLE_ADMIN
@@ -98,7 +105,7 @@ class User implements UserInterface, Serializable, EquatableInterface
      *
      * @var string
      *
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, name="first_name")
      *
      * @Assert\NotBlank
      * @Assert\Length(
@@ -115,7 +122,7 @@ class User implements UserInterface, Serializable, EquatableInterface
      *
      * @Gedmo\Timestampable(on="create")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      *
      * @Assert\DateTime
      */
@@ -128,7 +135,7 @@ class User implements UserInterface, Serializable, EquatableInterface
      *
      * @Gedmo\Timestampable(on="update")
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      *
      * @Assert\DateTime
      */
@@ -136,8 +143,17 @@ class User implements UserInterface, Serializable, EquatableInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="user")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $links;
+
+    /**
+     * @return string|null
+     */
+    public function __toString(): string
+    {
+        return $this->getEmail();
+    }
 
     /**
      * User constructor.
@@ -215,6 +231,12 @@ class User implements UserInterface, Serializable, EquatableInterface
      */
     public function setRoles(array $roles): self
     {
+        // make sure admin have not got link editor privilege
+        if (in_array('ROLE_LINK_EDITOR', $roles)
+        && in_array('ROLE_ADMIN', $roles)) {
+            unset($roles['ROLE_LINK_EDITOR']);
+        }
+
         $this->roles = $roles;
 
         return $this;
@@ -403,6 +425,14 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * @return string
+     */
+    public function roleLinkEditor()
+    {
+        return self::ROLE_LINK_EDITOR;
+    }
+
+    /**
      * @return Collection|Link[]
      */
     public function getLinks(): Collection
@@ -410,23 +440,33 @@ class User implements UserInterface, Serializable, EquatableInterface
         return $this->links;
     }
 
+    /**
+     * @param Link $link
+     *
+     * @return User
+     */
     public function addLink(Link $link): self
     {
         if (!$this->links->contains($link)) {
             $this->links[] = $link;
-            $link->setUserId($this);
+            $link->setUser($this);
         }
 
         return $this;
     }
 
+    /**
+     * @param Link $link
+     *
+     * @return User
+     */
     public function removeLink(Link $link): self
     {
         if ($this->links->contains($link)) {
             $this->links->removeElement($link);
             // set the owning side to null (unless already changed)
-            if ($link->getUserId() === $this) {
-                $link->setUserId(null);
+            if ($link->getUser() === $this) {
+                $link->setUser(null);
             }
         }
 

@@ -9,6 +9,7 @@ security:
                 class: App\Entity\User
                 property: email
     role_hierarchy:
+        ROLE_LINK_EDITOR: ROLE_USER
         ROLE_ADMIN: ROLE_USER
     firewalls:
         dev:

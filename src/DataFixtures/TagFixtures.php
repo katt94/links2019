@@ -22,9 +22,9 @@ class TagFixtures extends AbstractBaseFixture
     {
         parent::load($manager);
 
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 0; $i < $this->faker->numberBetween(20, 1000); ++$i) {
             $tag = new Tag();
-            $tag->setName($this->faker->unique()->monthName());
+            $tag->setName($this->faker->unique()->text(20));
 
             $manager->persist($tag);
         }

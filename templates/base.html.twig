@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}{{ 'footer.project.name' | trans }}</title>
+        <title>{% block title %}{% endblock %} | {{ 'footer.project.name' | trans }}</title>
         {% block stylesheets_vendors %}
             <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {% endblock %}
@@ -14,7 +14,7 @@
             <nav class="navbar navbar-light navbar-expand-sm" style="background-color: #fac200;">
                 <div class="container">
                     <a class="navbar-brand" href="{{ path('app_homepage') }}">
-                        Links2019
+                        <h4>AxURL</h4>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
                         <div class="navbar-nav mr-auto">
                             <a class="nav-item nav-link {% if app.request.get('_route') starts with 'app_homepage' %}active{% endif %}" href="{{ path('app_homepage') }}">{{ 'header.homepage' | trans }}</a>
 
-                            {% if app.user %}
+                            {% if is_granted('ROLE_LINK_EDITOR') %}
                                 <a class="nav-item nav-link {% if app.request.get('_route') starts with 'link' %}active{% endif %}" href="{{ path('link_list') }}">{{ 'header.link.list' | trans }}</a>
                             {% endif %}
 
@@ -34,6 +34,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ path('admin_user_list') }}">{{ 'link.user_list' | trans }}</a>
+                                        <a class="dropdown-item" href="{{ path('admin_link_list') }}">{{ 'link.link.list' | trans }}</a>
                                         <a class="dropdown-item" href="{{ path('admin_tag_list') }}">{{ 'link.tag.list' | trans }}</a>
                                     </div>
                                 </div>
@@ -76,8 +77,9 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}
+            <p></p>
             <footer>
-                <div class="container">
+                <div class="container" style="background-color: #A68E5C;">
                     <p>{{ 'footer.project.name' | trans }}</p>
                     <p>{{ 'footer.project.author_with_name' | trans({ '%name%': 'footer.project.author_name' | trans }) }}</p>
                     <p>{{ 'footer.project.studies' | trans }}</p>

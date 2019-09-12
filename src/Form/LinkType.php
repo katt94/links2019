@@ -1,13 +1,13 @@
 <?php
+/**
+ * Link type file.
+ */
 
 namespace App\Form;
 
 use App\Entity\Link;
-use App\Entity\Tag;
 use App\Form\DataTransformer\TagsDataTransformer;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -43,13 +43,14 @@ class LinkType extends AbstractType
         $builder
             ->add('url', TextType::class, [
                 'required' => true,
+                'label' => 'form.tag.url',
             ])
             ->add(
                 'tags',
                 TextType::class,
                 [
                     'by_reference' => false,
-                    'label' => 'form.tag.name',
+                    'label' => 'form.tags.name',
                     'required' => false,
                     'attr' => [
                         'max_length' => 255,
@@ -70,6 +71,7 @@ class LinkType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Link::class,
+            'inherit_data' => true,
         ]);
     }
 }

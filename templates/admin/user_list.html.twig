@@ -17,13 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for user in pagination %}
                     <tr>
                         <td>{{ user.id }}</td>
                         <td>{{ user.email }}</td>
                         <td>
                             {% for role in user.roles %}
-                                <span class="badge badge-{% if user.roleAdmin() == role %}success{% else %}primary{% endif %}">{% if user.roleAdmin() == role %}{{ 'users.roles.ROLE_ADMIN' | trans }}{% else %}{{ 'users.roles.ROLE_USER' | trans }}{% endif %}</span>
+                                <span class="badge badge-{% if user.roleAdmin() == role %}success{% else %}primary{% endif %}">{% if user.roleAdmin() == role %}{{ 'users.roles.ROLE_ADMIN' | trans }}{% elseif user.roleLinkEditor() == role %}{{ 'users.roles.ROLE_LINK_EDITOR' | trans }}{% else %}{{ 'users.roles.ROLE_USER' | trans }}{% endif %}</span>
                             {% endfor %}
                         </td>
 {#                        <td>#}
@@ -44,5 +44,7 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        {{ knp_pagination_render(pagination) }}
     </div>
 {% endblock %}

@@ -3,9 +3,37 @@
 {% block title %}{{ 'header.homepage' | trans }}{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>{{ 'header.homepage' | trans }}</h1>
+    <div class="col-md-6 container">
+        <center>
+            <p></p>
+            <h2>
+                {{ 'header.homepage.welcome' | trans }}
+            </h2>
+            <p>
+                {{ 'homepage.text1' | trans }}
+            </p>
+            <p>
+                {{ 'homepage.text2' | trans }}
+            </p>
+            <p>
+                {{ 'homepage.text3' | trans }}
+            </p>
+            <p>
+                {{ 'homepage.text4' | trans }}
+            </p>
+            <p>
+                <b>{{ 'homepage.user.data' | trans }}</b>
+            </p>
+        <p>
+            <b>{{ 'homepage.admin.data' | trans }}</b>
+        </p>
 
-        <p>coś o stronie do uzupełnienia</p>
+            {% block photo %}
+            <p>
+                <img src="{{ asset ('https://www.computerhope.com/jargon/d/database.jpg') }}" alt="Example"/>
+            </p>
+            {% endblock %}
+        </center>
+
     </div>
 {% endblock %}

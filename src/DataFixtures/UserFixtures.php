@@ -40,17 +40,37 @@ class UserFixtures extends AbstractBaseFixture
     {
         parent::load($manager);
 
+        $user = new User();
+        $user->setEmail('user@user.pl');
+        $user->setFirstName('User');
+        $user->setRoles(['ROLE_USER', 'ROLE_LINK_EDITOR']);
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword($user, 'test123')
+        );
+
+        $manager->persist($user);
+
         for ($i = 0; $i < 10; ++$i) {
             $user = new User();
             $user->setEmail($this->faker->unique()->freeEmail);
             $user->setFirstName($this->faker->firstName());
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['ROLE_USER', 'ROLE_LINK_EDITOR']);
             $user->setPassword(
                 $this->passwordEncoder->encodePassword($user, 'test123')
             );
 
             $manager->persist($user);
         }
+
+        $user = new User();
+        $user->setEmail('admin@admin.pl');
+        $user->setFirstName('Admin');
+        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword($user, 'test123')
+        );
+
+        $manager->persist($user);
 
         for ($i = 0; $i < 3; ++$i) {
             $user = new User();

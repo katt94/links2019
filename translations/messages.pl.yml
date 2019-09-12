@@ -1,14 +1,15 @@
-header.homepage: Strona główna
+header.homepage: START
+header.homepage.welcome: Witaj w aplikacji webowej AxURL!
 header.user.list: Użytkownicy
 header.user.add: Dodawanie użytkownika
 header.user.edit: Edycja użytkownika
 header.user.delete: Usuwanie użytkownika
-header.user.change_password: Zmiana hasła użytkownika
-header.user.my_infomration: Moje dane
+header.user.change_password: Zmiana hasła
+header.user.my_infomration: Linki
 header.tag.list: Lista tagów
 header.tag.add: Dodaj tag
 header.tag.edit: Edytuj tag
-header.tag.remove: Usuwanie tag
+header.tag.remove: Usuwanie tagu
 header.link.list: Lista linków
 header.link.add: Dodaj link
 header.link.edit: Edytuj link
@@ -18,9 +19,9 @@ table.thead.id: ID
 table.thead.name: Nazwa
 table.thead.created_at: Data utworzenia
 table.thead.updated_at: Data zmiany
-table.thead.actions: Dostępne akcje
+table.thead.actions: Akcje
 
-table.thead.tag.name: Nazwa tagu
+table.thead.tag.name: Tag
 
 table.thead.user.email: Email
 table.thead.user.role: Rola
@@ -28,11 +29,11 @@ table.thead.user.status: Status
 table.thead.user.first_name: Imię
 
 table.thead.link.url: Adres oryginalny
-table.thead.link.hash: Adres po zakodowaniu
+table.thead.link.hash: Adres po skróceniu
 table.thead.link.tag_list: Tagi
 table.thead.link.counter: Odwiedziny
 
-link.account_with_name: Konto - %username%
+link.account_with_name: 'Konto użytkownika %username%'
 link.preview: Podgląd
 link.see_details: Zobacz szczegóły
 link.add: Dodaj
@@ -47,7 +48,7 @@ link.off: Wyłącz
 link.login: Zaloguj
 link.logout: Wyloguj
 link.register: Utwórz konto
-link.admin_panel: Admin Panel
+link.admin_panel: DZIAŁY
 link.back_to_list: Powrót do listy
 link.user_list: Użytkownicy
 link.user_change_password: Zmiana hasła
@@ -57,31 +58,41 @@ link.tag.add: Dodaj tag
 link.tag.edit: Edytuj tag
 link.tag.remove: Usuń tag
 
+link.link.list: Lista linków
+link.link.add: Dodaj link
+link.link.edit: Edytuj link
+link.link.remove: Usuń link
+
 users.roles.ROLE_ADMIN: Administrator
+users.roles.ROLE_LINK_EDITOR: Edytor linków
 users.roles.ROLE_USER: Użytkownik
 users.roles.status.active.0: Nieaktywny
 users.roles.status.active.1: Aktywny
 
 form.register: Rejestracja
 form.create_account: Utwórz konto
+form.user.select: -- Wybierz użytkownika --
 form.user.roles.ROLE_USER: Użytkownik
+form.user.roles.ROLE_LINK_EDITOR: Użytkownik z dostępem do linków
 form.user.roles.ROLE_ADMIN: Administrator
 form.user.first_name: Imię
 form.user.email: E-mail
-form.user.password: Hasło
+form.user.password: Obecne hasło
 form.user.repeat_password: Powtórz Hasło
 form.user.roles: Uprawnienia
 form.user.first_password: Nowe hasło
 form.user.second_password: Powtórz nowe hasło
 form.invalid.password: Nie prawidołowe hasło
 form.invalid.passwords: Podane hasła są różne
-form.tag.name: Nazwa tagu
+form.tag.name: Tag
+form.tag.user: Użytkownik
+form.tag.url: Adres URL
 form.tags.name: Tagi (oddzielone przecinkiem)
 
-footer.project.name: Links2019
+footer.project.name: AxURL
 footer.project.author_with_name: Autor - %name%
 footer.project.author_name: Katarzyna Persona
-footer.project.studies: EPI 2019
+footer.project.studies: EPI 2019 - Uniwersytet Jagielloński w Krakowie
 
 message.success.user.remove: Usunięcie użytkownika %email% przebiegło pomyślnie
 message.success.user.add: Dodanie użytkownika przebiegło pomyślnie
@@ -101,7 +112,7 @@ message.danger.user.incorrect_password: Podane hasło jest nie prawidłowe
 
 "Username could not be found.": Użytkownik nie został znaleziony.
 
-login.page: Strona logowania
+login.page: Panel Logowania
 login.user: Użytkownik
 login.user.placeholder: Email
 login.password: Hasło
@@ -113,3 +124,20 @@ register.password: Hasło
 
 confirm.remove.user_with_name: Usunąć użytkownika "%name%"?
 confirm.remove.tag_with_name: Usunąć tag "%name%"?
+
+homepage.text1: Aplikacja ma pozwalać zarejestrowanemu i zalogowanemu użytkownikowi skrócić wprowadzony
+                przez niego dowolny adres URL  (nie dłuższy niż 255 znaków), zapisać go w bazie danych
+                (tabeli na jego koncie) i oznaczyć odpowiednimi tagami.
+homepage.text2: W aplikacji występują 2 typy użytkowników - administrator oraz zwykły użytkownik.
+                Każdy z użytkowników podczas rejestracji podaje swoje imię, adres email
+                (czyli jego login) oraz hasło dostępu do konta w aplikacji.
+homepage.text3: Akcje, jakie po zalogowaniu może wykonać administrator to dodanie nowego użytkownika, zmiana imienia,
+                maila i hasła użytkownika oraz własnego hasła, wybranie roli oraz usunięcie użytkownika, dodanie,
+                edytowanie i usunięcie linku innemu, wybranemu z listy użytkownikowi (oprócz innych adminów),
+                 dodanie, edycja, usunięcie tagu oraz wylogowanie się.
+homepage.text4: Zwykły użytkownik natomiast może skrócić, edytować oraz usunąć swoje linki,
+                edytować tagi, zmienić swoje hasło oraz wylogować się.
+homepage.user.data: Dane logowania dla zwykłego użytkownika -> user@user.pl / test123
+homepage.admin.data: Dane logowania dla administratora -> admin@admin.pl / test123
+
+

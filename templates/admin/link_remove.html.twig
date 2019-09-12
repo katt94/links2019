@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'header.link.remove' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'header.link.remove' | trans }}</h1>
+
+        {{ form_start(form, { method: 'DELETE', action: url('admin_link_remove', { id: link.id }) }) }}
+            {{ form_row(form.user) }}
+            {{ form_row(form.link.url) }}
+            {{ form_row(form.link.tags) }}
+
+            {{ form_rest(form) }}
+
+            <div class="form-group float-right">
+                <button type="submit" class="btn btn-danger">{{ 'link.remove' | trans }}</button>
+            </div>
+
+            <div class="form-group">
+                <a href="{{ url('admin_link_list') }}" class="btn btn-link">
+                    {{ 'link.back_to_list' | trans }}
+                </a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
