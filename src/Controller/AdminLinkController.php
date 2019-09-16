@@ -24,6 +24,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdminLinkController extends AbstractController
 {
     /**
+     * Link list action.
+     *
      * @Route("/admin/link-list", name="admin_link_list")
      *
      * @IsGranted("ROLE_ADMIN")
@@ -45,6 +47,8 @@ class AdminLinkController extends AbstractController
     }
 
     /**
+     * Link add action.
+     *
      * @Route(
      *     "/admin/link-add",
      *     name="admin_link_add",
@@ -62,11 +66,8 @@ class AdminLinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(
-        Request $request,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function add(Request $request, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         /** @var Link $link */
         $link = new Link();
 
@@ -76,7 +77,6 @@ class AdminLinkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = base_convert(md5($link->getUrl().strtotime(date('c'))), 7, 16);
-
             $link->setHash($hash);
 
             $linkRepository->save($link);
@@ -92,6 +92,8 @@ class AdminLinkController extends AbstractController
     }
 
     /**
+     * Link edit action.
+     *
      * @Route(
      *     "/admin/link/{id}/edit",
      *     name="admin_link_edit",
@@ -111,12 +113,8 @@ class AdminLinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function edit(
-        Request $request,
-        Link $link,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function edit(Request $request, Link $link, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(LinkWithUserType::class, $link, ['method' => 'PUT']);
 
         $form->handleRequest($request);
@@ -140,6 +138,8 @@ class AdminLinkController extends AbstractController
     }
 
     /**
+     * Link remove action.
+     *
      * @Route(
      *     "/admin/link-remove/{id}",
      *     name="admin_link_remove",
@@ -159,12 +159,8 @@ class AdminLinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(
-        Request $request,
-        Link $link,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function remove(Request $request, Link $link, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(LinkWithUserType::class, $link, ['method' => 'DELETE', 'disabled' => true]);
         $form->handleRequest($request);
 

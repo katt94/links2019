@@ -40,18 +40,7 @@ class LinkFixtures extends AbstractBaseFixture implements OrderedFixtureInterfac
             $link->setUser($user);
             $link->setUrl($url);
 
-            $hash = base_convert(
-                intval(
-                    substr(
-                        md5($link->getUrl().$this->faker->unique()->numberBetween(strtotime(date('c')))),
-                        0,
-                        16
-                    ),
-                    16
-                ),
-                7,
-                16
-            );
+            $hash = base_convert(md5($link->getUrl().strtotime(date('c'))), 7, 16);
 
             $link->setHash($hash);
 

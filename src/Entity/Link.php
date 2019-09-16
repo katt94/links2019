@@ -22,6 +22,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Link
 {
     /**
+     * Primary key.
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -29,22 +31,30 @@ class Link
     private $id;
 
     /**
+     * User relation.
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="links")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
+     * Url.
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $url;
 
     /**
+     * Hash.
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
 
     /**
+     * Tags relation.
+     *
      * @ORM\ManyToMany(
      *     targetEntity="App\Entity\Tag",
      *     inversedBy="links",
@@ -83,7 +93,9 @@ class Link
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Counter", mappedBy="link")
+     * Counters relation.
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Counter", mappedBy="link", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $counters;
 
@@ -97,6 +109,8 @@ class Link
     }
 
     /**
+     * Return id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -105,6 +119,8 @@ class Link
     }
 
     /**
+     * Return user.
+     *
      * @return User|null
      */
     public function getUser(): ?User
@@ -113,6 +129,8 @@ class Link
     }
 
     /**
+     * Set user value.
+     *
      * @param User|null $user
      *
      * @return Link
@@ -125,6 +143,8 @@ class Link
     }
 
     /**
+     * Return url.
+     *
      * @return string|null
      */
     public function getUrl(): ?string
@@ -133,6 +153,8 @@ class Link
     }
 
     /**
+     * Set url value.
+     *
      * @param string $url
      *
      * @return Link
@@ -145,6 +167,8 @@ class Link
     }
 
     /**
+     * Return hash.
+     *
      * @return string|null
      */
     public function getHash(): ?string
@@ -153,6 +177,8 @@ class Link
     }
 
     /**
+     * Set hash value.
+     *
      * @param string $hash
      *
      * @return Link
@@ -165,6 +191,8 @@ class Link
     }
 
     /**
+     * Return tags.
+     *
      * @return Collection|Tag[]
      */
     public function getTags(): Collection
@@ -173,6 +201,8 @@ class Link
     }
 
     /**
+     * Add tag to collection.
+     *
      * @param Tag $tag
      *
      * @return Link
@@ -187,6 +217,8 @@ class Link
     }
 
     /**
+     * Remove tag from collection.
+     *
      * @param Tag $tag
      *
      * @return Link
@@ -201,6 +233,8 @@ class Link
     }
 
     /**
+     * Return created at.
+     *
      * @return DateTimeInterface|null
      */
     public function getCreatedAt(): ?DateTimeInterface
@@ -209,6 +243,8 @@ class Link
     }
 
     /**
+     * Set created at value.
+     *
      * @param DateTimeInterface $createdAt
      *
      * @return Link
@@ -221,6 +257,8 @@ class Link
     }
 
     /**
+     * Return updated at.
+     *
      * @return DateTimeInterface|null
      */
     public function getUpdatedAt(): ?DateTimeInterface
@@ -229,6 +267,8 @@ class Link
     }
 
     /**
+     * Set updated at value.
+     *
      * @param DateTimeInterface $updatedAt
      *
      * @return Link
@@ -241,6 +281,8 @@ class Link
     }
 
     /**
+     * Return counters.
+     *
      * @return Collection|Counter[]
      */
     public function getCounters(): Collection
@@ -249,6 +291,8 @@ class Link
     }
 
     /**
+     * Add counter to collection.
+     *
      * @param Counter $counter
      *
      * @return Link
@@ -264,6 +308,8 @@ class Link
     }
 
     /**
+     * Remove counter from collection.
+     *
      * @param Counter $counter
      *
      * @return Link

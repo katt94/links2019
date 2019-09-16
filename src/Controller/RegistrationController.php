@@ -7,7 +7,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use App\Repository\UserRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,15 +28,15 @@ class RegistrationController extends AbstractController
      *
      * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param ManagerRegistry              $managerRegistry
+     * @param UserRepository               $repository
      *
      * @return Response
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
-    public function register(
-        Request $request,
-        UserPasswordEncoderInterface $passwordEncoder,
-        ManagerRegistry $managerRegistry
-    ): Response {
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $repository): Response
+    {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -54,9 +56,7 @@ class RegistrationController extends AbstractController
 
             $user->setRoles($user->getRoles());
 
-            $entityManager = $managerRegistry->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $repository->save($user);
 
             // do anything else you need here, like send an email
 

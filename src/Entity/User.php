@@ -142,15 +142,19 @@ class User implements UserInterface, Serializable, EquatableInterface
     private $updatedAt;
 
     /**
+     * Links with relation.
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="user")
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $links;
 
     /**
+     * Simple toString method.
+     *
      * @return string|null
      */
-    public function __toString(): string
+    public function __toString(): ?string
     {
         return $this->getEmail();
     }
@@ -164,14 +168,18 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * return id property.
+     *
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
+     * return email property.
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -180,6 +188,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set email value.
+     *
      * @param string $email
      *
      * @return User
@@ -192,6 +202,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * get password property.
+     *
      * @return string|null
      */
     public function getPassword(): ?string
@@ -200,6 +212,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set password value.
+     *
      * @param string $password
      *
      * @return User
@@ -212,6 +226,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * return role property.
+     *
      * @return array|null
      */
     public function getRoles(): ?array
@@ -225,6 +241,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set role value.
+     *
      * @param array $roles
      *
      * @return User
@@ -235,6 +253,8 @@ class User implements UserInterface, Serializable, EquatableInterface
         if (in_array('ROLE_LINK_EDITOR', $roles)
         && in_array('ROLE_ADMIN', $roles)) {
             unset($roles['ROLE_LINK_EDITOR']);
+        } else {
+            $roles[] = 'ROLE_LINK_EDITOR';
         }
 
         $this->roles = $roles;
@@ -243,6 +263,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * get first name property.
+     *
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -251,6 +273,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set first name value.
+     *
      * @param string $firstName
      *
      * @return User
@@ -263,6 +287,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * get created at property.
+     *
      * @return DateTimeInterface|null
      */
     public function getCreatedAt(): ?DateTimeInterface
@@ -271,6 +297,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set created at value.
+     *
      * @param DateTimeInterface $createdAt
      *
      * @return User
@@ -283,6 +311,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * get updated at property.
+     *
      * @return DateTimeInterface|null
      */
     public function getUpdatedAt(): ?DateTimeInterface
@@ -291,6 +321,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * set updated at value.
+     *
      * @param DateTimeInterface $updatedAt
      *
      * @return User
@@ -339,7 +371,6 @@ class User implements UserInterface, Serializable, EquatableInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
         // to jest miejsce gdzie kasujemy dane wrażliwe z modelu User
         // $this->fooBar = null;
         $this->password = null;
@@ -409,6 +440,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Return role admin constant value.
+     *
      * @return string
      */
     public function roleAdmin()
@@ -417,6 +450,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Return role user constant value.
+     *
      * @return string
      */
     public function roleUser()
@@ -425,6 +460,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Return role link editor constant value.
+     *
      * @return string
      */
     public function roleLinkEditor()
@@ -433,6 +470,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Return links.
+     *
      * @return Collection|Link[]
      */
     public function getLinks(): Collection
@@ -441,6 +480,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Add link to collection.
+     *
      * @param Link $link
      *
      * @return User
@@ -456,6 +497,8 @@ class User implements UserInterface, Serializable, EquatableInterface
     }
 
     /**
+     * Remove link from collection.
+     *
      * @param Link $link
      *
      * @return User

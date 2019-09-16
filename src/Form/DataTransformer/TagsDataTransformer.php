@@ -65,20 +65,23 @@ class TagsDataTransformer implements DataTransformerInterface
      *
      * @throws ORMException
      * @throws OptimisticLockException
+     * @throws \ReflectionException
      */
     public function reverseTransform($value): array
     {
         $tagNames = explode(',', $value);
 
+        /** @var Tag[] $tags */
         $tags = [];
 
         foreach ($tagNames as $tagName) {
             if ('' !== trim($tagName)) {
-                $tag = $this->repository->findOneBy(['name' => strtolower(trim($tagName))]);
+                /** @var Tag $tag */
+                $tag = $this->repository->findOneBy(['name' => trim($tagName)]);
 
-                if (null == $tag) {
+                if (null === $tag) {
                     $tag = new Tag();
-                    $tag->setName(strtolower(trim($tagName)));
+                    $tag->setName(trim($tagName));
                     $this->repository->save($tag);
                 }
 

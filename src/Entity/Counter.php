@@ -20,6 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Counter
 {
     /**
+     * Primary key.
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -53,19 +55,25 @@ class Counter
     private $updatedAt;
 
     /**
+     * Link relation.
+     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Link", inversedBy="counters")
      */
     private $link;
 
     /**
+     * Return id.
+     *
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
+     * Return created at.
+     *
      * @return DateTimeInterface|null
      */
     public function getCreatedAt(): ?DateTimeInterface
@@ -74,6 +82,8 @@ class Counter
     }
 
     /**
+     * Set created at value.
+     *
      * @param DateTimeInterface $createdAt
      *
      * @return Counter
@@ -86,6 +96,8 @@ class Counter
     }
 
     /**
+     * Return updated at.
+     *
      * @return DateTimeInterface|null
      */
     public function getUpdatedAt(): ?DateTimeInterface
@@ -94,6 +106,8 @@ class Counter
     }
 
     /**
+     * Set updated at value.
+     *
      * @param DateTimeInterface $updatedAt
      *
      * @return Counter
@@ -106,6 +120,8 @@ class Counter
     }
 
     /**
+     * Return link.
+     *
      * @return Link|null
      */
     public function getLink(): ?Link
@@ -114,6 +130,8 @@ class Counter
     }
 
     /**
+     * Set link value.
+     *
      * @param Link|null $link
      *
      * @return Counter

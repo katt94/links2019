@@ -12,7 +12,6 @@
                     <th>{{ 'table.thead.id' | trans }}</th>
                     <th>{{ 'table.thead.user.email' | trans }}</th>
                     <th>{{ 'table.thead.user.role' | trans }}</th>
-{#                    <th>{{ 'table.thead.user.status' | trans }}</th>#}
                     <th>{{ 'table.thead.actions' | trans }}</th>
                 </tr>
             </thead>
@@ -26,18 +25,10 @@
                                 <span class="badge badge-{% if user.roleAdmin() == role %}success{% else %}primary{% endif %}">{% if user.roleAdmin() == role %}{{ 'users.roles.ROLE_ADMIN' | trans }}{% elseif user.roleLinkEditor() == role %}{{ 'users.roles.ROLE_LINK_EDITOR' | trans }}{% else %}{{ 'users.roles.ROLE_USER' | trans }}{% endif %}</span>
                             {% endfor %}
                         </td>
-{#                        <td>#}
-{#                            <span class="badge badge-{% if user.isActive %}success{% else %}danger{% endif %}">{{ ('users.status.active.' ~ user.isActive | default('0')) | trans }}</span>#}
-{#                        </td>#}
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a class="btn btn-outline-info btn-sm" href="{{ path('admin_user_edit', { id: user.id }) }}">{{ 'link.edit' | trans }}</a>
-                                <a class="btn btn-outline-danger btn-sm" onclick="return confirm('{{ 'confirm.remove.user_with_name' | trans({ '%name%': user.username }) }}');" href="{{ path('admin_user_delete', { id: user.id }) }}">{{ 'link.remove' | trans }}</a>
-{#                                {% if user.isActive %}#}
-{#                                    <a class="btn btn-outline-danger btn-sm" onclick="return confirm('{{ 'confirmation.turnoff_user' | trans({ '%name%': user.username }) }}');" href="{{ path('user_turnoff', { id: user.id }) }}">{{ 'btn.turnoff' | trans }}</a>#}
-{#                                {% else %}#}
-{#                                    <a class="btn btn-outline-success btn-sm" onclick="return confirm('{{ 'confirmation.turnon_user' | trans({ '%name%': user.username }) }}');" href="{{ path('user_turnon', { id: user.id }) }}">{{ 'btn.turnon' | trans }}</a>#}
-{#                                {% endif %}#}
+                                <a class="btn btn-outline-danger btn-sm" href="{{ path('admin_user_delete', { id: user.id }) }}">{{ 'link.remove' | trans }}</a>
                             </div>
                         </td>
                     </tr>

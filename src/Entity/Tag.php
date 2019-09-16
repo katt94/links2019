@@ -30,6 +30,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag
 {
     /**
+     * Primary key.
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -63,21 +65,30 @@ class Tag
     private $updatedAt;
 
     /**
+     * Name.
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * Links relation.
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Link", mappedBy="tags")
      */
     private $links;
 
+    /**
+     * Tag constructor.
+     */
     public function __construct()
     {
         $this->links = new ArrayCollection();
     }
 
     /**
+     * Return id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -86,6 +97,8 @@ class Tag
     }
 
     /**
+     * Return name.
+     *
      * @return string|null
      */
     public function getName(): ?string
@@ -94,6 +107,8 @@ class Tag
     }
 
     /**
+     * Set name value.
+     *
      * @param string $name
      *
      * @return Tag
@@ -106,6 +121,8 @@ class Tag
     }
 
     /**
+     * Return created at.
+     *
      * @return DateTimeInterface|null
      */
     public function getCreatedAt(): ?DateTimeInterface
@@ -114,6 +131,8 @@ class Tag
     }
 
     /**
+     * Set created at value.
+     *
      * @param DateTimeInterface $createdAt
      *
      * @return Tag
@@ -126,6 +145,8 @@ class Tag
     }
 
     /**
+     * Return updated at.
+     *
      * @return DateTimeInterface|null
      */
     public function getUpdatedAt(): ?DateTimeInterface
@@ -134,6 +155,8 @@ class Tag
     }
 
     /**
+     * Set updated at value.
+     *
      * @param DateTimeInterface $updatedAt
      *
      * @return Tag
@@ -146,6 +169,8 @@ class Tag
     }
 
     /**
+     * Return links.
+     *
      * @return Collection|Link[]
      */
     public function getLinks(): Collection
@@ -154,6 +179,8 @@ class Tag
     }
 
     /**
+     * Add link to collection.
+     *
      * @param Link $link
      *
      * @return Tag
@@ -169,6 +196,8 @@ class Tag
     }
 
     /**
+     * Remove link from collection.
+     *
      * @param Link $link
      *
      * @return Tag

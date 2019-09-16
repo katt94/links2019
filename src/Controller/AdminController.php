@@ -74,12 +74,8 @@ class AdminController extends AbstractController
      *
      * @Route("/admin/user/new", name="admin_user_new", methods={"GET", "POST"})
      */
-    public function newUser(
-        Request $request,
-        UserRepository $repository,
-        UserPasswordEncoderInterface $userPasswordEncoder,
-        TranslatorInterface $translator
-    ): Response {
+    public function newUser(Request $request, UserRepository $repository, UserPasswordEncoderInterface $userPasswordEncoder, TranslatorInterface $translator): Response
+    {
         /** @var User $user */
         $user = new User();
 
@@ -122,13 +118,8 @@ class AdminController extends AbstractController
      *
      * @Route("/admin/user/{id}/edit", name="admin_user_edit", methods={"GET", "PUT"}, requirements={"id": "[1-9]\d*"})
      */
-    public function editUser(
-        Request $request,
-        User $user,
-        UserRepository $repository,
-        UserPasswordEncoderInterface $userPasswordEncoder,
-        TranslatorInterface $translator
-    ): Response {
+    public function editUser(Request $request, User $user, UserRepository $repository, UserPasswordEncoderInterface $userPasswordEncoder, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(UserType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
 
@@ -175,12 +166,8 @@ class AdminController extends AbstractController
      *     requirements={"id": "[1-9]\d*"}
      *     )
      */
-    public function deleteUser(
-        Request $request,
-        User $user,
-        UserRepository $repository,
-        TranslatorInterface $translator
-    ): Response {
+    public function deleteUser(Request $request, User $user, UserRepository $repository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(UserType::class, $user, ['method' => 'DELETE', 'disabled' => true]);
         $form->handleRequest($request);
 

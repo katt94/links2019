@@ -5,7 +5,7 @@ header.user.add: Adding user
 header.user.edit: Editing user
 header.user.delete: Removing user
 header.user.change_password: Changing password
-header.user.my_infomration: Links
+header.user.my_infomration: My information
 header.tag.list: Tags list
 header.tag.add: Add tag
 header.tag.edit: Edit tag
@@ -77,7 +77,7 @@ form.user.roles.ROLE_LINK_EDITOR: User - link editor
 form.user.roles.ROLE_ADMIN: Admin
 form.user.first_name: First name
 form.user.email: E-mail
-form.user.password: Current password
+form.user.password: Password
 form.user.repeat_password: Repeat passowrd
 form.user.roles: Permissions/Roles
 form.user.first_password: New password
@@ -137,3 +137,4 @@ homepage.text4: Regular user can shorten, edit and delete their links, edit tags
 
 homepage.user.data: Login data for user -> user@user.pl / test123
 homepage.admin.data: Login data for admin -> admin@admin.pl / test123
+homepage.database.title: Relational database model

@@ -5,7 +5,7 @@ header.user.add: Dodawanie użytkownika
 header.user.edit: Edycja użytkownika
 header.user.delete: Usuwanie użytkownika
 header.user.change_password: Zmiana hasła
-header.user.my_infomration: Linki
+header.user.my_infomration: Moje dane
 header.tag.list: Lista tagów
 header.tag.add: Dodaj tag
 header.tag.edit: Edytuj tag
@@ -77,7 +77,7 @@ form.user.roles.ROLE_LINK_EDITOR: Użytkownik z dostępem do linków
 form.user.roles.ROLE_ADMIN: Administrator
 form.user.first_name: Imię
 form.user.email: E-mail
-form.user.password: Obecne hasło
+form.user.password: Hasło
 form.user.repeat_password: Powtórz Hasło
 form.user.roles: Uprawnienia
 form.user.first_password: Nowe hasło
@@ -139,5 +139,6 @@ homepage.text4: Zwykły użytkownik natomiast może skrócić, edytować oraz us
                 edytować tagi, zmienić swoje hasło oraz wylogować się.
 homepage.user.data: Dane logowania dla zwykłego użytkownika -> user@user.pl / test123
 homepage.admin.data: Dane logowania dla administratora -> admin@admin.pl / test123
+homepage.database.title: Relacyjny model bazy danych
 
 

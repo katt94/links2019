@@ -14,6 +14,8 @@ use ReflectionException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
+ * Class TagRepository.
+ *
  * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
  * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
  * @method Tag[]    findAll()
@@ -29,32 +31,6 @@ class TagRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Tag::class);
-    }
-
-    /**
-     * Remove duplicates from tags.
-     *
-     * @param $insertions
-     *
-     * @throws ORMException
-     * @throws ReflectionException
-     */
-    protected function removeDuplicates($insertions)
-    {
-        foreach ($insertions as $key => $insertion) {
-            $shortClassName = (new ReflectionClass($insertion))->getShortName();
-            // TODO: The search can be heavily optimized
-            foreach ($insertions as $possibleOtherKey => $possibleOtherInsertion) {
-                $shortOtherClassName = (new ReflectionClass($insertion))->getShortName();
-                // TODO: Treat case when unique is on a field not called 'id'
-                if ($shortClassName === $shortOtherClassName
-                    && $insertion->getId() === $possibleOtherInsertion->getId()
-                    && $key !== $possibleOtherKey
-                ) {
-                    $this->_em->remove($possibleOtherInsertion);
-                }
-            }
-        }
     }
 
     /**
@@ -85,6 +61,34 @@ class TagRepository extends ServiceEntityRepository
     {
         $this->_em->remove($tag);
         $this->_em->flush($tag);
+    }
+
+    /**
+     * Remove duplicates from tags.
+     *
+     *
+     * @param mixed $insertions
+     *
+     * @throws ORMException
+     * @throws ReflectionException
+     */
+    protected function removeDuplicates($insertions)
+    {
+        foreach ($insertions as $key => $insertion) {
+            $shortClassName = (new ReflectionClass($insertion))->getShortName();
+
+            /** @var mixed $insertions */
+            foreach ($insertions as $possibleOtherKey => $otherInsertion) {
+                $shortOtherClassName = (new ReflectionClass($insertion))->getShortName();
+
+                if ($shortClassName === $shortOtherClassName
+                    && $insertion->getId() === $otherInsertion->getId()
+                    && $key !== $possibleOtherKey
+                ) {
+                    $this->_em->remove($otherInsertion);
+                }
+            }
+        }
     }
 
     // /**

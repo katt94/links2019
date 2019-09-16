@@ -63,12 +63,8 @@ class UserController extends AbstractController
      *     )
      * @IsGranted("ROLE_USER")
      */
-    public function changePassword(
-        Request $request,
-        UserRepository $repository,
-        UserPasswordEncoderInterface $userPasswordEncoder,
-        TranslatorInterface $translator
-    ): Response {
+    public function changePassword(Request $request, UserRepository $repository, UserPasswordEncoderInterface $userPasswordEncoder, TranslatorInterface $translator): Response
+    {
         /** @var User $user */
         $user = $this->getUser();
 

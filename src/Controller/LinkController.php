@@ -28,6 +28,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class LinkController extends AbstractController
 {
     /**
+     * User link list action.
+     *
      * @Route("/link-list", name="link_list")
      *
      * @IsGranted("ROLE_LINK_EDITOR")
@@ -52,6 +54,8 @@ class LinkController extends AbstractController
     }
 
     /**
+     * User link add action.
+     *
      * @Route(
      *     "/link-add",
      *     name="link_add",
@@ -69,11 +73,8 @@ class LinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(
-        Request $request,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function add(Request $request, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         /** @var Link $link */
         $link = new Link();
 
@@ -84,8 +85,7 @@ class LinkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hash = base_convert(intval(substr(md5($link->getUrl().strtotime(date('c'))), 0, 16), 16), 7, 16);
-
+            $hash = base_convert(md5($link->getUrl().strtotime(date('c'))), 7, 16);
             $link->setHash($hash);
             $link->setUser($this->getUser());
 
@@ -102,6 +102,8 @@ class LinkController extends AbstractController
     }
 
     /**
+     * User link edit action.
+     *
      * @Route(
      *     "/link-edit,{id}",
      *     name="link_edit",
@@ -121,19 +123,15 @@ class LinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function edit(
-        Request $request,
-        Link $link,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function edit(Request $request, Link $link, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(LinkType::class, $link, ['method' => 'PUT', 'inherit_data' => false]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($link->getUrl() !== $form->get('url')) {
-                $hash = base_convert(intval(substr(md5($link->getUrl().strtotime(date('c'))), 0, 16), 16), 7, 16);
+                $hash = base_convert(md5($link->getUrl().strtotime(date('c'))), 7, 16);
                 $link->setHash($hash);
             }
 
@@ -150,6 +148,8 @@ class LinkController extends AbstractController
     }
 
     /**
+     * User link remove action.
+     *
      * @Route(
      *     "/link-remove,{id}",
      *     name="link_remove",
@@ -169,17 +169,14 @@ class LinkController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(
-        Request $request,
-        Link $link,
-        LinkRepository $linkRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function remove(Request $request, Link $link, LinkRepository $linkRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(LinkType::class, $link, [
             'method' => 'DELETE',
             'disabled' => true,
             'inherit_data' => false,
-            ]);
+        ]);
+
         $form->handleRequest($request);
 
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
@@ -203,6 +200,8 @@ class LinkController extends AbstractController
     }
 
     /**
+     * Public link redirect to original from hash action.
+     *
      * @Route(
      *     "/link,{hash}",
      *     name="link_redirect",

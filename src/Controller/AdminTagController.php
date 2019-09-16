@@ -24,6 +24,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdminTagController extends AbstractController
 {
     /**
+     * Tag list action.
+     *
      * @Route("/admin/tag-list", name="admin_tag_list")
      *
      * @IsGranted("ROLE_ADMIN")
@@ -45,6 +47,8 @@ class AdminTagController extends AbstractController
     }
 
     /**
+     * Tag add action.
+     *
      * @Route(
      *     "/admin/tag-add",
      *     name="admin_tag_add",
@@ -61,6 +65,7 @@ class AdminTagController extends AbstractController
      *
      * @throws ORMException
      * @throws OptimisticLockException
+     * @throws \ReflectionException
      */
     public function add(Request $request, TagRepository $tagRepository, TranslatorInterface $translator): Response
     {
@@ -85,6 +90,8 @@ class AdminTagController extends AbstractController
     }
 
     /**
+     * Tag edit action.
+     *
      * @Route(
      *     "/admin/tag/{id}/edit",
      *     name="admin_tag_edit",
@@ -103,13 +110,10 @@ class AdminTagController extends AbstractController
      *
      * @throws ORMException
      * @throws OptimisticLockException
+     * @throws \ReflectionException
      */
-    public function edit(
-        Request $request,
-        Tag $tag,
-        TagRepository $tagRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function edit(Request $request, Tag $tag, TagRepository $tagRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(TagType::class, $tag, ['method' => 'PUT']);
         $form->handleRequest($request);
 
@@ -127,6 +131,8 @@ class AdminTagController extends AbstractController
     }
 
     /**
+     * Tag remove action.
+     *
      * @Route(
      *     "/admin/tag/{id}/remove",
      *     name="admin_tag_remove",
@@ -146,12 +152,8 @@ class AdminTagController extends AbstractController
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(
-        Request $request,
-        Tag $tag,
-        TagRepository $tagRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function remove(Request $request, Tag $tag, TagRepository $tagRepository, TranslatorInterface $translator): Response
+    {
         $form = $this->createForm(TagType::class, $tag, ['method' => 'DELETE', 'disabled' => true]);
         $form->handleRequest($request);
 
